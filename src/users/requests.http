@@ -1,10 +1,84 @@
+##########################################################
+# AUTHENTICATION & USER MANAGEMENT API
+# Base URL: http://localhost:3000/auth
+##########################################################
+
+##########################################################
+# Sign Up – Create a New User
+##########################################################
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+  "email": "newuser3@example.com",
+  "password": "password123"
+}
+
+##########################################################
+# Sign In – Login Existing User
+##########################################################
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+  "email": "newuser2@example.com",
+  "password": "password123"
+}
+
+##########################################################
+# Get All Users
+##########################################################
+GET http://localhost:3000/auth
+
+##########################################################
+# Get Current User
+##########################################################
+GET http://localhost:3000/auth/current-user
+
+##########################################################
+# Find Users by Email
+##########################################################
+GET http://localhost:3000/auth?email=newuser@example.com
+
+##########################################################
+# Find a User by ID
+##########################################################
+GET http://localhost:3000/auth/1
+
+##########################################################
+# Update a User by ID
+##########################################################
+PATCH http://localhost:3000/auth/1
+Content-Type: application/json
+
+{
+  "email": "updateduser@example.com"
+}
+
+##########################################################
+# Delete a User by ID
+##########################################################
+DELETE http://localhost:3000/auth/1
+
+##########################################################
+
+
 ### Create a new user
-POST http://localhost:3000/auth
+POST http://localhost:3000/auth/signup
 content-type: application/json
 
 {
-  "email": "asdf@asdf.com",
+  "email": "asdfss@asdf.com",
   "password": "asdfjkl;"
+}
+
+### Sign in as an existing user
+POST http://localhost:3000/auth/signin
+content-type: application/json
+
+{
+  "email": "test@test.com",
+  "password": "12345"
 }
 
 ### Find a particular user with a given ID
