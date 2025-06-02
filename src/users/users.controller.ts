@@ -7,6 +7,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   Session,
   UseGuards,
 } from '@nestjs/common';
@@ -54,13 +55,13 @@ export class UsersController {
   }
 
   @Get()
-  findAll() {
-    return this.usersService.findAll();
+  async findAllUsers(@Query('email') email: string) {
+    return await this.usersService.find(email);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    const user = this.usersService.findOne(parseInt(id));
+  async findUser(@Param('id') id: string) {
+    const user = await this.usersService.findOne(parseInt(id));
     if (!user) {
       throw new NotFoundException('user not found');
     }
@@ -68,12 +69,12 @@ export class UsersController {
   }
 
   @Delete(':id')
-  removeUser(@Param('id') id: string) {
-    return this.usersService.remove(parseInt(id));
+  async removeUser(@Param('id') id: string) {
+    return await this.usersService.remove(parseInt(id));
   }
 
   @Patch(':id')
-  updateUser(@Param('id') id: string, @Body() body: UpdateUserDto) {
-    return this.usersService.update(parseInt(id), body);
+  async updateUser(@Param('id') id: string, @Body() body: UpdateUserDto) {
+    return await this.usersService.update(parseInt(id), body);
   }
 }
