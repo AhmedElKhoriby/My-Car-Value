@@ -13,6 +13,8 @@ export const setupApp = (app: any) => {
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
+      transform: true,
+      forbidNonWhitelisted: true,
     }),
   );
 };
